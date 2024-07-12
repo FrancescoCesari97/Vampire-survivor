@@ -1,6 +1,7 @@
 from settings import *
 
 from player import Player
+from sprites import *
 
 class Game:
     def __init__(self):
