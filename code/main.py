@@ -1,5 +1,7 @@
 from settings import *
 
+from player import Player
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -7,6 +9,8 @@ class Game:
         pygame.display.set_caption('Vampire survivor')
         self.clock = pygame.time.Clock()
         self.running = True
+
+    
 
     def run(self):
         while self.running:
