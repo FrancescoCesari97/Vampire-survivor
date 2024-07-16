@@ -23,7 +23,7 @@ class Game:
 
 
         # * sprites
-        self.player = Player((400, 300), self.all_sprites, self.collision_sprites)
+        # self.player = Player((400, 300), self.all_sprites, self.collision_sprites)
         # for i in range(7):
         #     x, y = randint(0, WINDOW_WIDTH), randint(0,WINDOW_HEIGHT)
         #     w, h = randint(50, 80), randint(50, 80)
@@ -40,6 +40,10 @@ class Game:
 
         for obj in map.get_layer_by_name('Collisions'):
             CollisionSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), self.collision_sprites)
+
+        for obj in map.get_layer_by_name('Entities'):
+            if obj.name == 'Player':
+                self.player = Player((obj.x, obj.y), self.all_sprites, self.collision_sprites)
 
         
     def run(self):
