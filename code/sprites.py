@@ -65,3 +65,18 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.center += self.direction * self.speed * dt
         if pygame.time.get_ticks() - self.spawn_time >= self.lifetime:
             self.kill()
+
+class Enemy(pygame.sprie.Sprite):
+    def __init__(self, pos, frames, groups, player, collision_sprites):
+        super().__init__(groups)
+        self.player = player
+
+        # * image
+        self.frames, self.frame_index = frames, 0
+        self.images = self.frames[self.frame_index]
+        self.animation_speed = 6
+
+        # * rect
+        self.rect = self.image.get_frect(center = pos)
+        self.hitbox_rect = self.rect.inflate(-20, -40)
+        self.collision_sprites = collision_sprites
