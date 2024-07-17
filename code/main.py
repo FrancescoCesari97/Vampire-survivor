@@ -14,20 +14,28 @@ class Game:
         pygame.display.set_caption('Vampire survivor')
         self.clock = pygame.time.Clock()
         self.running = True
-        self.load_images()
 
         # * groups
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
         self.bullet_sprites = pygame.sprite.Group()
 
-        self.setup()
 
         # * gun timer
         self.can_shoot = True
         self.shoot_time = 0
         self.gun_cooldown = 150
 
+        # * enemy timer
+        self.enemy_event = pygame.event.custom_type()
+        pygame.time.set_timer(self.enemy_event, 300)
+        self.spawn_positons = []
+
+        # * setup
+        self.load_images()
+        self.setup()
+
+        
     def load_images(self):
         self.bullet_surf = pygame.image.load(join('images', 'gun','bullet.png')). convert_alpha()
     
@@ -67,6 +75,8 @@ class Game:
             if obj.name == 'Player':
                 self.player = Player((obj.x, obj.y), self.all_sprites, self.collision_sprites)
                 self.gun = Gun(self.player, self.all_sprites)
+            else:
+                self.spawn_positons.append((obj.x, obj.y))
 
         
     def run(self):
@@ -78,6 +88,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                if event.type == self.enemy_event:
+                    print('spawn enemy')
 
             # * update
             self.gun_timer()

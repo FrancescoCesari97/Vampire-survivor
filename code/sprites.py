@@ -66,7 +66,7 @@ class Bullet(pygame.sprite.Sprite):
         if pygame.time.get_ticks() - self.spawn_time >= self.lifetime:
             self.kill()
 
-class Enemy(pygame.sprie.Sprite):
+class Enemy(pygame.sprite.Sprite):
     def __init__(self, pos, frames, groups, player, collision_sprites):
         super().__init__(groups)
         self.player = player
