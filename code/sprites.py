@@ -80,3 +80,5 @@ class Enemy(pygame.sprie.Sprite):
         self.rect = self.image.get_frect(center = pos)
         self.hitbox_rect = self.rect.inflate(-20, -40)
         self.collision_sprites = collision_sprites
+        self.direction = pygame.Vector2()
+        self.speed = 350
