@@ -38,7 +38,7 @@ class Game:
 
         
     def load_images(self):
-        self.bullet_surf = pygame.image.load(join('images', 'gun','bullet.png')). convert_alpha()
+        self.bullet_surf = pygame.image.load(join('images', 'gun','bullet.png')).convert_alpha()
 
         folders =  list(walk(join('images', 'enemies')))[0][1]
         self.enemy_frames = {}
@@ -47,7 +47,7 @@ class Game:
                  self.enemy_frames[folder] = []
                  for file_name in sorted(file_names, key = lambda name: int(name.split('.')[0])):
                      full_path = join(folder_path, file_name)
-                     surf = pygame.load(full_path).convert_alpha()
+                     surf = pygame.image.load(full_path).convert_alpha()
                      self.enemy_frames[folder].append(surf)
     
     def input(self):
