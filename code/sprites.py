@@ -86,7 +86,16 @@ class Enemy(pygame.sprite.Sprite):
     def animate(self, dt):
         self.frame_index += self.animation_speed * dt
         self.image = self.frames[int(self.frame_index) % len(self.frames)]
+
+    def move(self, dt):
+        # * get direction
+        player_pos = pygame.Vector2(self.player.rect.center)
+        enemy_pos = pygame.Vector2(self.rect.center)
+        self.direction = (player_pos - enemy_pos).normalize()
+
+        # * update the rect position + collision logic
+        self.rect.center += self.direction * self.speed * dt
     
     def update(self, dt):
-        # self.move(dt)
+        self.move(dt)
         self.animate(dt)
