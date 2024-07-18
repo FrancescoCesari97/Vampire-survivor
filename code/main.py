@@ -89,6 +89,11 @@ class Game:
             else:
                 self.spawn_positons.append((obj.x, obj.y))
 
+    def bullet_collision(self):
+        if self.bullet_sprites:
+            for bullet in self.bullet_sprites:
+                collision_sprites = pygame.sprite.spritecollide(bullet, self.enemy_sprites, True)
+
         
     def run(self):
         while self.running:
@@ -106,6 +111,7 @@ class Game:
             self.gun_timer()
             self.input()
             self.all_sprites.update(dt)
+            self.bullet_collision()
 
 
             # * draw
